@@ -1,0 +1,152 @@
+<% layout("layouts/boilerplate") %>
+
+<!-- Importing boilerplate html for all pages  this includes all the files associated with boilerplate  -->   
+
+<h2>Create a New Listing</h2>
+
+<div class="form-container">
+  <div class="form-card">
+
+    <h2 class="form-title">Create a New Listing</h2>
+
+    <!-- novalidate stops default browser validation -->
+    <!-- needs-validation enables Bootstrap custom validation -->
+
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+
+
+      <div class="mb-3">
+
+  <label class="form-label">Category</label>
+
+  <select name="listing.category" class="form-select">
+
+    <option value="Trending">Trending</option>
+    <option value="Rooms">Rooms</option>
+    <option value="Mountain">Mountain</option>
+    <option value="Beach">Beach</option>
+    <option value="Forest">Forest</option>
+    <option value="Arctic">Arctic</option>
+    <option value="Camping">Camping</option>
+    <option value="City">City</option>
+    <option value="Pools">Pools</option>
+
+  </select>
+
+</div>
+
+      <!-- Title -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="listing[title]"
+          placeholder="Enter title" 
+          class="custom-input form-control"
+          required>
+
+        <div class="valid-feedback">
+          Title looks good.
+        </div>
+
+        <div class="invalid-feedback">
+          Please provide a valid title.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <textarea
+          name="listing[description]"
+          placeholder="Enter description"
+          class="custom-input form-control"
+          required></textarea>
+
+        <div class="invalid-feedback">
+          Please provide a valid description.
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3">
+        <input
+          type="number"
+          name="listing[price]"
+          placeholder="Enter price"
+          class="custom-input form-control"
+          required>
+
+        <div class="invalid-feedback">
+          Please provide a valid price.
+        </div>
+      </div>
+
+      <!-- City -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="listing[city]"
+          placeholder="Enter city"
+          class="custom-input form-control"
+          required>
+
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="listing[location]"
+          placeholder="Enter location"
+          class="custom-input form-control">
+
+        <div class="invalid-feedback">
+          Please provide a valid location.
+        </div>
+      </div>
+
+      <!-- Country -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="listing[country]"
+          placeholder="Enter country"
+          class="custom-input form-control"
+          required>
+
+        <div class="invalid-feedback">
+          Please provide a valid country.
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="listing[image]"
+          placeholder="Image URL"
+          class="custom-input form-control">
+      </div>
+
+      
+      
+      <!-- Image -->
+      <div class="mb-3">
+        <input
+          type="file"
+          name="listing[image]"
+          class="custom-input form-control">
+      </div> 
+
+
+
+      <!-- Submit -->
+      <button type="submit" class="submit-btn">
+        Add Listing
+      </button>
+
+    </form>
+  </div>
+</div>

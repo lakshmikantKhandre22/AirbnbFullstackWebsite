@@ -1,0 +1,117 @@
+<% layout("layouts/boilerplate") %>
+
+<%=success %> 
+
+
+<!-- Airbnb Style Filters -->
+<div class="filters-container mb-4">
+
+  <div class="filters d-flex gap-4 overflow-auto pb-2">
+
+
+    <a href="/listings/filter/Trending" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Rooms" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Mountain" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-mountain-city"></i>
+        <p>Mountain</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Beach" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-water"></i>
+        <p>Beach</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Forest" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-tree"></i>
+        <p>Forest</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Arctic" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-snowflake"></i>
+        <p>Arctic</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Camping" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-campground"></i>
+        <p>Camping</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/City" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-city"></i>
+        <p>City</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Pools" class="text-decoration-none text-dark">
+      <div class="filter text-center">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Pools</p>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<h2>All Listings</h2>
+
+
+<div class="row">
+
+<% for(let listing of allListings){ %>
+
+<div class="col-12 col-md-6 col-lg-4 mb-4">   
+    <!-- from this class we have divided cards as per the screen size -->
+
+    
+<a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+
+<div class="card listing-card h-100">
+
+<img 
+src="<%= listing.image.url %>"
+onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800';"
+class="card-img-top listing-img"
+alt="image">
+
+<div class="card-body">
+
+<h5 class="card-title"><%= listing.title %></h5>
+
+<p class="card-text">₹ <%= listing.price %></p>
+
+<button class="btn btn-danger">View</button>
+
+</div>
+
+</div>
+</a>
+
+</div>
+
+<% } %>
+
+</div>

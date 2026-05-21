@@ -1,0 +1,117 @@
+<!-- Airbnb Style Navbar -->
+
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top px-4 py-3">
+
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/listings">
+      <i class="fa-brands fa-airbnb fs-2 text-danger"></i>
+      <span class="fw-bold fs-4 text-dark">WanderLust</span>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button
+      class="navbar-toggler border-0 shadow-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Side Links -->
+      <ul class="navbar-nav ms-4 gap-3">
+
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="/listings">
+            Home
+          </a>
+        </li>
+<!-- 
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="/listings">
+            Listings
+          </a>
+        </li> -->
+
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="/listings/new">
+            Add Listing
+          </a>
+        </li>
+
+      </ul>
+
+
+      <!-- Search Bar -->
+
+<div class="search-container">
+
+  <form action="/listings/search" method="GET" class="search-form">
+
+    <input
+      type="text"
+      name="q"
+      placeholder="Start your search"
+      class="search-input"
+    />
+
+    <button class="search-btn">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+    </button>
+
+  </form>
+
+</div>
+    
+
+      <!-- Right Side Auth Buttons -->
+      <ul class="navbar-nav ms-auto gap-2">
+
+
+        <!-- If the user is not logged in then show signup and login option  -->
+        <% if(!currUser) { %>
+
+          <!-- Not logged in -->
+
+          <li class="nav-item">
+            <a class="btn btn-outline-dark rounded-pill px-4" href="/signup">
+              Signup
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-dark rounded-pill px-4" href="/login">
+              Login
+            </a>
+          </li>
+
+        <% } else { %>
+
+          <!-- if the user is Logged in then show only Logout -->
+
+          <li class="nav-item d-flex align-items-center me-2">
+            <span class="fw-semibold text-dark">
+              Welcome, <%= currUser.username %>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-danger rounded-pill px-4" href="/logout">
+              Logout
+            </a>
+          </li>
+
+        <% } %>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,329 @@
+<% layout("layouts/boilerplate") %>
+
+    <!-- Importing boileplate html for all pages  -->
+
+
+    <style>
+        .listing-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .listing-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+
+        .listing-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+
+        .listing-img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .listing-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .listing-details li {
+            font-size: 1.1rem;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+
+        .listing-details li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-group {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border: none;
+        }
+
+        .edit-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #0056b3;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+
+        .review-section {
+            margin-top: 30px;
+        }
+
+        .review-section h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+            padding-left: 10px;
+        }
+
+        .review-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .review-card {
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: 0.2s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .review-rating {
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 5px;
+        }
+
+        .review-comment {
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .star {
+            font-size: 18px;
+        }
+
+        .star.filled {
+            color: #ff9800;
+        }
+
+        .star.empty {
+            color: #ddd;
+        }
+    </style>
+
+
+
+    <div class="listing-container">
+
+        <h2 class="listing-title">
+            <%= listing.title %>
+        </h2>
+
+        <div class="listing-card">
+
+            <img src="<%= listing.image.url %>"
+                onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800';"
+                class="listing-img" alt="image">
+
+            <ul class="listing-details">
+                <li>
+                    <strong>Owned by:</strong>
+                    <%= listing.Owner ? listing.Owner.username : "Unknown" %>
+                </li>
+                <li><strong>Title:</strong>
+                    
+                    <%= listing.title %>
+                </li>
+                <li><strong>Description:</strong>
+                    <%= listing.description %>
+                </li>
+                <li><strong>Price:</strong> ₹<%= Number(listing.price || 0).toLocaleString("en-IN") %>
+                </li>
+                <li><strong>Country:</strong>
+                    <%= listing.country %>
+                </li>
+                <li><strong>Location:</strong>
+                    <%= listing.location %>
+                </li>
+            </ul>
+
+
+    <!-- Authorization only the user musat have access of the edit and delete  -->
+   
+    <% if (currUser && listing.Owner  && listing.Owner.equals(currUser._id)) { %>
+
+    <div class="btn-group">
+        <a href="/listings/<%= listing._id %>/edit" class="btn edit-btn">
+            Edit Listing
+        </a>
+
+        <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+            <button class="btn delete-btn">
+                Delete Listing
+            </button>
+        </form>
+    </div>
+
+<% } %>
+<% if (currUser) { %>
+
+    <div class="col-8 offset-3">
+        <h4>Leave a Review</h4>
+
+        <!-- after submitting the form the action goes to this route -->
+        <form 
+            action="/listings/<%= listing._id %>/reviews" 
+            method="POST" 
+            novalidate 
+            class="needs-validation"
+        >
+
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+
+                <textarea
+                    class="form-control"
+                    id="comment"
+                    name="review[comment]"
+                    rows="3"
+                    cols="20"
+                    required
+                ></textarea>
+
+                <div class="invalid-feedback">
+                    Please provide a valid comment.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+
+                <select 
+                    class="form-control"
+                    id="rating"
+                    name="review[rating]"
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Submit Review
+            </button>
+
+        </form>
+    </div>
+
+<% } else { %>
+
+    <p class="offset-3">
+        You must be logged in to leave a review.
+    </p>
+
+<% } %>
+
+
+                <!-- reviews are present in the listing DataBase -->
+                </hr>
+                <div class="review-section">
+
+    <h4>All Reviews</h4>
+
+    <ul class="review-list">
+
+        <% for(let review of listing.reviews){ %>
+
+            <li class="review-card">
+
+                <!-- Review Author -->
+                <div class="review-author">
+                    <strong>
+                        <%= review.author.username %>
+                    </strong>
+                </div>
+
+                <!-- Rating -->
+                <div class="review-rating">
+
+                    <% for(let i = 1; i <= 5; i++) { %>
+
+                        <% if(i <= review.rating) { %>
+                            <span class="star filled">★</span>
+                        <% } else { %>
+                            <span class="star empty">★</span>
+                        <% } %>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Comment -->
+                <div class="review-comment">
+                    <%= review.comment %>
+                </div>
+
+                <!-- Delete Review -->
+                <form 
+                    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                    method="POST"
+                    class="delete-review-form"
+                >
+
+                    <button class="delete-review-btn">
+                        Delete Review
+                    </button>
+
+                </form>
+
+            </li>
+
+        <% } %>
+
+    </ul>
+
+</div>
+
+            </div>
+        </div>
+    </div>

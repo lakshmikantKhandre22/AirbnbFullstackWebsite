@@ -1,0 +1,429 @@
+body{
+    background-color: #f7f7f7;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Style  Navbar */
+.navbar{
+    height: 5rem;
+}
+
+.navbar-brand i{
+    color: #ff385c;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222 !important;
+}
+
+.nav-link:hover{
+    color: #ff385c !important;
+}
+
+/* Right pill menu */
+.rounded-pill{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.rounded-pill:hover{
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Main container */
+.container{
+    min-height: 80vh;
+}
+
+/* Style Footer */
+.footer{
+    background-color: #f7f7f7;
+    border-top: 1px solid #dddddd;
+    color: #222;
+    font-size: 14px;
+}
+
+.footer-link{
+    text-decoration: none;
+    color: #222;
+    margin-left: 8px;
+}
+
+.footer-link:hover{
+    text-decoration: underline;
+    color: #ff385c;
+}
+
+.social-icon{
+    color: #222;
+    transition: 0.3s;
+}
+
+.social-icon:hover{
+    color: #ff385c;
+}
+
+.footer span{
+    font-weight: 500;
+}
+
+.footer .container{
+    min-height: auto;
+}
+
+
+
+
+/* style listing card  */
+
+.listing-card{
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+
+
+.listing-card:hover{
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.listing-img{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+/* Style new.ejs  */
+
+body{
+    background: #f8f9fa;
+}
+
+.form-container{
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+.form-card{
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-title{
+    text-align: center;
+    color: #dc3545;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.custom-input{
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.custom-input:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 8px rgba(220,53,69,0.2);
+}
+
+textarea.custom-input{
+    resize: none;
+    min-height: 120px;
+}
+
+.submit-btn{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #dc3545;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.submit-btn:hover{
+    background: #bb2d3b;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+/* Style edit .ejs  */
+
+body{
+    background: #f8f9fa;
+}
+
+.edit-container{
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+.edit-card{
+    background: #fff;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.edit-title{
+    text-align: center;
+    color: #dc3545;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.custom-input{
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.custom-input:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 8px rgba(220,53,69,0.2);
+}
+
+textarea.custom-input{
+    resize: none;
+    min-height: 120px;
+}
+
+.update-btn{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #dc3545;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+
+/* Filters */
+
+.filters-container {
+  border-bottom: 1px solid #ebebeb;
+  padding: 1rem 0;
+}
+
+.filters {
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter {
+  min-width: 80px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.filter i {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #ff385c;
+}
+
+.filter p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.listing-card {
+  border: none !important;
+  transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+  transform: scale(1.02);
+}
+
+.listing-img {
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 1rem !important;
+}
+
+
+/* Navbar Search */
+
+.navbar {
+  padding: 1rem 2rem;
+}
+
+.navbar-search {
+  width: 40%;
+}
+
+.search-input {
+  border-radius: 2rem;
+  padding: 0.7rem 1rem;
+  margin: 2px 0px;
+  border: 1px solid #ddd;
+  box-shadow: none !important;
+ margin: 2px 0px;
+  margin-left: 7px;
+
+}
+
+.search-input:focus {
+  border-color: #ff385c;
+}
+
+
+
+
+.search-btn {
+  background-color: #ff385c !important;
+  color: white !important;
+  border-radius: 50% !important;
+  margin-left: 0.5rem;
+  width: 45px;
+  height: 45px;
+  border: none !important;
+}
+
+.search-btn:hover {
+  background-color: #e61e4d !important;
+}
+
+@media(max-width:768px){
+
+  .navbar-search{
+    width:100%;
+    margin-top:1rem;
+  }
+
+}
+
+
+
+
+
+
+
+
+/*  Style show.ejs  */
+/* 
+.listing-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .listing-title {
+        text-align: center;
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .listing-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    .listing-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .listing-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .listing-details li {
+        font-size: 1.1rem;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        color: #555;
+    }
+
+    .listing-details li:last-child {
+        border-bottom: none;
+    }
+
+    .btn-group {
+        margin-top: 25px;
+        display: flex;
+        gap: 15px;
+    }
+
+    
+    .btn {
+        text-decoration: none;
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+        border: none;
+    }
+
+    .edit-btn {
+        background: #007bff;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        background: #0056b3;
+    }
+
+    .delete-btn {
+        background: #dc3545;
+        color: white;
+    }
+
+    .delete-btn:hover {
+        background: #a71d2a;
+    }
+
+
+ */
