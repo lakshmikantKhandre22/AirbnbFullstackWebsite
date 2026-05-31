@@ -61,6 +61,8 @@ router.get("/search", async (req, res) => {
 
   res.render("listings/index.ejs", {
     allListings,
+    searchQuery: q,
+    activeCategory: null,
     success: `Search results for "${q}"`
   });
 
@@ -162,6 +164,8 @@ router.get("/filter/:category", async (req, res) => {
 
   res.render("listings/index.ejs", {
     allListings: filteredListings,
+    activeCategory: category,
+    searchQuery: null,
     success: `${category} Listings`
   });
 

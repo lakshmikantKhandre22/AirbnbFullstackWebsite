@@ -1,67 +1,43 @@
-
 <% layout("layouts/boilerplate") %>
 
-<div class="row mt-4">
-  <div class="col-8 offset-2">
+<div class="auth-page">
+  <div class="auth-page-visual d-none d-lg-flex">
+    <div class="auth-visual-content">
+      <i class="fa-brands fa-airbnb auth-visual-logo"></i>
+      <h2>Welcome back to WanderLust</h2>
+      <p>Pick up where you left off — manage listings, read reviews, and plan your next trip.</p>
+    </div>
+  </div>
+  <div class="auth-page-form">
+    <div class="auth-card">
+      <h1 class="auth-card-title">Log in</h1>
+      <p class="auth-card-subtitle">Enter your credentials to continue</p>
 
-    <h3 class="mb-4">Login</h3>
-
-    <form action="/login" method="POST" novalidate class="needs-validation">
-
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter username"
-          class="form-control"
-          required
-        >
-
-        <!-- Client side validation for success message  -->
-        <div class="valid-feedback">
-          Username looks good.
+      <form action="/login" method="POST" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="username" name="username" placeholder="Your username" class="form-control" required>
+          </div>
+          <div class="invalid-feedback">Please enter a username.</div>
         </div>
 
-        <div class="invalid-feedback">
-          Please enter a username.
-        </div>
-      </div>
-
-
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter password"
-          class="form-control"
-          required
-          minlength="6"
-        >
-
-        <div class="valid-feedback">
-          Password looks good.
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder="Your password" class="form-control" required minlength="6">
+          </div>
+          <div class="invalid-feedback">Password must be at least 6 characters.</div>
         </div>
 
-        <div class="invalid-feedback">
-          Password must be at least 6 characters.
-        </div>
-      </div>
+        <button type="submit" class="btn-submit">Log in</button>
+      </form>
 
-      <!-- Signup Button -->
-      <button class="btn btn-dark">
-     Login 
-    </button>
-
-    </form>
+      <p class="auth-footer-link">
+        New here? <a href="/signup">Create an account</a>
+      </p>
+    </div>
   </div>
 </div>
-
- 

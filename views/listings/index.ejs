@@ -1,117 +1,155 @@
 <% layout("layouts/boilerplate") %>
 
-<%=success %> 
+<% const categories = [
+  { name: "Trending", icon: "fa-fire" },
+  { name: "Rooms", icon: "fa-bed" },
+  { name: "Mountain", icon: "fa-mountain-city" },
+  { name: "Beach", icon: "fa-water" },
+  { name: "Forest", icon: "fa-tree" },
+  { name: "Arctic", icon: "fa-snowflake" },
+  { name: "Camping", icon: "fa-campground" },
+  { name: "City", icon: "fa-city" },
+  { name: "Pools", icon: "fa-person-swimming" }
+]; %>
 
+<section class="hero-banner" aria-label="Welcome to WanderLust">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
 
-<!-- Airbnb Style Filters -->
-<div class="filters-container mb-4">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-badge">
+        <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+        Curated stays · India &amp; beyond
+      </span>
 
-  <div class="filters d-flex gap-4 overflow-auto pb-2">
+      <h1 class="hero-title">
+        Find your
+        <span class="hero-title-accent">perfect escape</span>
+      </h1>
 
+      <p class="hero-subtitle">
+        Handpicked homes, scenic getaways, and city stays — everything you need for your next trip, in one place.
+      </p>
 
-    <a href="/listings/filter/Trending" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-fire"></i>
-        <p>Trending</p>
+      <ul class="hero-highlights">
+        <li><i class="fa-solid fa-house-chimney" aria-hidden="true"></i> Unique places</li>
+        <li><i class="fa-solid fa-shield-heart" aria-hidden="true"></i> Trusted hosts</li>
+        <li><i class="fa-solid fa-tags" aria-hidden="true"></i> Great value</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a href="#listings" class="btn btn-hero-primary">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          Browse stays
+        </a>
+        <a href="/listings/new" class="btn btn-hero-outline">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          Become a host
+        </a>
       </div>
-    </a>
+    </div>
+  </div>
+</section>
 
-    <a href="/listings/filter/Rooms" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-bed"></i>
-        <p>Rooms</p>
-      </div>
-    </a>
+<div class="filters-container">
+  <div class="filters-wrapper">
+    <div class="filters">
+      <a href="/" class="filter-link <%= (typeof activeCategory === 'undefined' || !activeCategory) ? 'active' : '' %>">
+        <div class="filter text-center">
+          <i class="fa-solid fa-compass"></i>
+          <p>All</p>
+        </div>
+      </a>
+      <% for (let cat of categories) { %>
+        <a href="/listings/filter/<%= cat.name %>" class="filter-link <%= activeCategory === cat.name ? 'active' : '' %>">
+          <div class="filter text-center">
+            <i class="fa-solid <%= cat.icon %>"></i>
+            <p><%= cat.name %></p>
+          </div>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</div>
 
-    <a href="/listings/filter/Mountain" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-mountain-city"></i>
-        <p>Mountain</p>
-      </div>
-    </a>
+<div class="page-header" id="listings">
+  <% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+    <h2 class="page-title">Results for "<%= searchQuery %>"</h2>
+    <p class="page-subtitle"><%= allListings ? allListings.length : 0 %> stays found</p>
+  <% } else if (activeCategory) { %>
+    <h2 class="page-title"><%= activeCategory %> stays</h2>
+    <p class="page-subtitle"><%= allListings ? allListings.length : 0 %> places to explore</p>
+  <% } else { %>
+    <h2 class="page-title">Explore stays</h2>
+    <p class="page-subtitle"><%= allListings ? allListings.length : 0 %> unique places waiting for you</p>
+  <% } %>
+</div>
 
-    <a href="/listings/filter/Beach" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-water"></i>
-        <p>Beach</p>
-      </div>
-    </a>
+<% if (!allListings || allListings.length === 0) { %>
 
-    <a href="/listings/filter/Forest" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-tree"></i>
-        <p>Forest</p>
-      </div>
-    </a>
+  <div class="empty-state">
+    <div class="empty-state-icon">
+      <i class="fa-solid fa-house-circle-exclamation"></i>
+    </div>
+    <h3>No listings found</h3>
+    <p>Try another category or search, or add the first listing yourself.</p>
+    <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
+      <a href="/" class="btn btn-outline-brand">View all</a>
+      <a href="/listings/new" class="btn btn-brand">Create a listing</a>
+    </div>
+  </div>
 
-    <a href="/listings/filter/Arctic" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-snowflake"></i>
-        <p>Arctic</p>
-      </div>
-    </a>
+<% } else { %>
 
-    <a href="/listings/filter/Camping" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-campground"></i>
-        <p>Camping</p>
-      </div>
-    </a>
+  <div class="row listings-grid">
 
-    <a href="/listings/filter/City" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-city"></i>
-        <p>City</p>
-      </div>
-    </a>
+    <% for (let listing of allListings) { %>
 
-    <a href="/listings/filter/Pools" class="text-decoration-none text-dark">
-      <div class="filter text-center">
-        <i class="fa-solid fa-person-swimming"></i>
-        <p>Pools</p>
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+        <a href="/listings/<%= listing._id %>" class="listing-card-link">
+
+          <article class="card listing-card h-100">
+
+            <div class="card-img-wrap">
+              <% if (listing.category) { %>
+                <span class="listing-badge"><%= listing.category %></span>
+              <% } %>
+              <img
+                src="<%= listing.image.url %>"
+                onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800';"
+                class="listing-img"
+                alt="<%= listing.title %>"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h2 class="card-title h6"><%= listing.title %></h2>
+              <p class="listing-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <%= listing.location %><% if (listing.country) { %>, <%= listing.country %><% } %>
+              </p>
+              <div class="listing-card-footer">
+                <p class="listing-price">
+                  ₹<%= Number(listing.price || 0).toLocaleString("en-IN") %>
+                  <span>/ night</span>
+                </p>
+                <span class="listing-rating">
+                  <i class="fa-solid fa-star"></i> 4.9
+                </span>
+              </div>
+            </div>
+
+          </article>
+
+        </a>
+
       </div>
-    </a>
+
+    <% } %>
 
   </div>
 
-</div>
-
-<h2>All Listings</h2>
-
-
-<div class="row">
-
-<% for(let listing of allListings){ %>
-
-<div class="col-12 col-md-6 col-lg-4 mb-4">   
-    <!-- from this class we have divided cards as per the screen size -->
-
-    
-<a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-
-<div class="card listing-card h-100">
-
-<img 
-src="<%= listing.image.url %>"
-onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800';"
-class="card-img-top listing-img"
-alt="image">
-
-<div class="card-body">
-
-<h5 class="card-title"><%= listing.title %></h5>
-
-<p class="card-text">₹ <%= listing.price %></p>
-
-<button class="btn btn-danger">View</button>
-
-</div>
-
-</div>
-</a>
-
-</div>
-
 <% } %>
-
-</div>

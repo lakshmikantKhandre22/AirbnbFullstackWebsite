@@ -1,4 +1,5 @@
 const Listing = require("../models/listing.js");
+const { geocodeAddress } = require("../utils/geocode.js");
 
 
 // INDEX ROUTE
@@ -6,7 +7,7 @@ module.exports.index = async (req, res) => {
 
     const allListings = await Listing.find({});
 
-    res.render("listings/index.ejs", { allListings });
+    res.render("listings/index.ejs", { allListings, activeCategory: null, searchQuery: null });
 };
 
 
@@ -42,6 +43,9 @@ module.exports.createNewListing = async (req, res) => {
       
     newListing.image={url,filename};   //storing new image using url with path  in Listing Collection  mongoDBtabase  
 
+    const geometry = await geocodeAddress(newListing);
+    if (geometry) newListing.geometry = geometry;
+
     await newListing.save();
 
     req.flash("success", "New listing created!");
@@ -72,7 +76,18 @@ module.exports.showListing = async (req, res) => {
         return res.redirect("/listings");
     }
 
-    res.render("listings/show.ejs", { listing });
+    const mapAddress = [listing.location, listing.city, listing.country]
+        .filter(Boolean)
+        .join(", ");
+
+    let mapLat = null;
+    let mapLng = null;
+    if (listing.geometry?.coordinates?.length === 2) {
+        mapLng = listing.geometry.coordinates[0];
+        mapLat = listing.geometry.coordinates[1];
+    }
+
+    res.render("listings/show.ejs", { listing, mapAddress, mapLat, mapLng });
                                //SEND LISTING with populated fields to 
                                 
 };
@@ -117,28 +132,27 @@ module.exports.updateListing = async (req, res) => {
 
     let { id } = req.params;
 
-    let listing = await Listing.findByIdAndUpdate(id,{ ...req.body.listing });
+    let listing = await Listing.findByIdAndUpdate(
+        id,
+        { ...req.body.listing },
+        { new: true, runValidators: true }
+    );
 
+    if (!listing) {
+        req.flash("error", "Listing does not exist!");
+        return res.redirect("/listings");
+    }
 
+    if (typeof req.file !== "undefined") {
+        let url = req.file.path;
+        let filename = req.file.filename;
+        listing.image = { url, filename };
+    }
 
-
-    if(typeof req.file != "undefined ")
-    {
-
-      
-        
-
-    
-    let url=req.file.path;   //get url from the user requested to upload file 
-    let filename=req.file.filename;
-
-
-
-    listing.image={url,filename};   //add image with url and filename in the Listing Collection 
+    const geometry = await geocodeAddress(listing);
+    if (geometry) listing.geometry = geometry;
 
     await listing.save();
-
-    }
 
 
     req.flash("success", "Listing updated successfully!");

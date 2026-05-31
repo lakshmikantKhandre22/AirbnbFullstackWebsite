@@ -1,152 +1,77 @@
 <% layout("layouts/boilerplate") %>
 
-<!-- Importing boilerplate html for all pages  this includes all the files associated with boilerplate  -->   
-
-<h2>Create a New Listing</h2>
-
-<div class="form-container">
+<div class="form-page">
   <div class="form-card">
-
-    <h2 class="form-title">Create a New Listing</h2>
-
-    <!-- novalidate stops default browser validation -->
-    <!-- needs-validation enables Bootstrap custom validation -->
+    <h1 class="form-card-title">Create a listing</h1>
+    <p class="form-card-subtitle">Share your space with travelers worldwide</p>
 
     <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
 
-
       <div class="mb-3">
-
-  <label class="form-label">Category</label>
-
-  <select name="listing.category" class="form-select">
-
-    <option value="Trending">Trending</option>
-    <option value="Rooms">Rooms</option>
-    <option value="Mountain">Mountain</option>
-    <option value="Beach">Beach</option>
-    <option value="Forest">Forest</option>
-    <option value="Arctic">Arctic</option>
-    <option value="Camping">Camping</option>
-    <option value="City">City</option>
-    <option value="Pools">Pools</option>
-
-  </select>
-
-</div>
-
-      <!-- Title -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[title]"
-          placeholder="Enter title" 
-          class="custom-input form-control"
-          required>
-
-        <div class="valid-feedback">
-          Title looks good.
-        </div>
-
-        <div class="invalid-feedback">
-          Please provide a valid title.
-        </div>
+        <label class="form-label" for="category">Category</label>
+        <select name="listing[category]" id="category" class="form-select">
+          <option value="Trending">Trending</option>
+          <option value="Rooms">Rooms</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Beach">Beach</option>
+          <option value="Forest">Forest</option>
+          <option value="Arctic">Arctic</option>
+          <option value="Camping">Camping</option>
+          <option value="City">City</option>
+          <option value="Pools">Pools</option>
+        </select>
       </div>
 
-      <!-- Description -->
       <div class="mb-3">
-        <textarea
-          name="listing[description]"
-          placeholder="Enter description"
-          class="custom-input form-control"
-          required></textarea>
+        <label class="form-label" for="title">Title</label>
+        <input type="text" id="title" name="listing[title]" placeholder="Cozy cabin with mountain views" class="form-control" required>
+        <div class="valid-feedback">Title looks good.</div>
+        <div class="invalid-feedback">Please provide a title.</div>
+      </div>
 
-        <div class="invalid-feedback">
-          Please provide a valid description.
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea id="description" name="listing[description]" placeholder="Describe your place..." class="form-control" required></textarea>
+        <div class="invalid-feedback">Please provide a description.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="price">Price per night (₹)</label>
+        <input type="number" id="price" name="listing[price]" placeholder="2500" class="form-control" min="1" required>
+        <div class="invalid-feedback">Please provide a valid price.</div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <label class="form-label" for="city">City</label>
+          <input type="text" id="city" name="listing[city]" placeholder="Mumbai" class="form-control" required>
+          <div class="invalid-feedback">Please provide a city.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="country">Country</label>
+          <input type="text" id="country" name="listing[country]" placeholder="India" class="form-control" required>
+          <div class="invalid-feedback">Please provide a country.</div>
         </div>
       </div>
 
-      <!-- Price -->
-      <div class="mb-3">
-        <input
-          type="number"
-          name="listing[price]"
-          placeholder="Enter price"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid price.
-        </div>
+      <div class="mb-3 mt-3">
+        <label class="form-label" for="location">Location</label>
+        <input type="text" id="location" name="listing[location]" placeholder="Neighborhood or area" class="form-control" required>
+        <div class="form-text">A map pin is added automatically from your city and location.</div>
+        <div class="invalid-feedback">Please provide a location.</div>
       </div>
 
-      <!-- City -->
       <div class="mb-3">
-        <input
-          type="text"
-          name="listing[city]"
-          placeholder="Enter city"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid city.
-        </div>
+        <label class="form-label" for="image-url">Image URL (optional)</label>
+        <input type="text" id="image-url" name="listing[image]" placeholder="https://..." class="form-control">
       </div>
 
-      <!-- Location -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[location]"
-          placeholder="Enter location"
-          class="custom-input form-control">
-
-        <div class="invalid-feedback">
-          Please provide a valid location.
-        </div>
+      <div class="mb-4">
+        <label class="form-label" for="image-file">Or upload an image</label>
+        <input type="file" id="image-file" name="listing[image]" class="form-control" accept="image/*">
       </div>
 
-      <!-- Country -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[country]"
-          placeholder="Enter country"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid country.
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[image]"
-          placeholder="Image URL"
-          class="custom-input form-control">
-      </div>
-
-      
-      
-      <!-- Image -->
-      <div class="mb-3">
-        <input
-          type="file"
-          name="listing[image]"
-          class="custom-input form-control">
-      </div> 
-
-
-
-      <!-- Submit -->
-      <button type="submit" class="submit-btn">
-        Add Listing
-      </button>
-
+      <button type="submit" class="submit-btn">Add listing</button>
     </form>
   </div>
 </div>

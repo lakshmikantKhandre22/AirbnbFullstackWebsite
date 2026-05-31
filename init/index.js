@@ -1,6 +1,6 @@
 // this program is used to insert bulk data into database
 
-require("dotenv").config({ path: "../.env" });
+// require("dotenv").config({ path: "../.env" });
 
 
 const mongoose = require("mongoose");
@@ -10,16 +10,16 @@ const initdata = require("./data.js");
 const Listing = require("../models/listing.js");
 
 
-// MongoDB Atlas URL
-const dburl = process.env.ATLASDB_URL;
+// // MongoDB Atlas URL
+// const dburl = process.env.ATLASDB_URL;
 
 
-// connect database
-async function main() {
+// // connect database
+// async function main() {
 
-   await mongoose.connect(dburl);
+//    await mongoose.connect(dburl);
 
-}
+// }
 
 
 // connect mongoose

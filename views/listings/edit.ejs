@@ -1,157 +1,67 @@
 <% layout("layouts/boilerplate") %>
 
+<div class="form-page">
+  <div class="form-card">
+    <h1 class="form-card-title">Edit listing</h1>
+    <p class="form-card-subtitle">Update your listing details</p>
 
-<!-- Importing boilerplate html for all pages -->
-
-<!-- this above imports boilerplate and boilerplate contains css -->
-
-
-
-
-
-<h2>Edit the Listing</h2>
-
-<div class="edit-container">
-  <div class="edit-card">
-
-    <h2 class="edit-title">Edit Listing</h2>
-
-    <form 
+    <form
       action="/listings/<%= listing._id %>?_method=PUT"
       method="POST"
-      novalidate           
+      novalidate
       class="needs-validation"
-      enctype="multipart/form-data">
-      <!-- To send the files through the form  -->
+      enctype="multipart/form-data"
+    >
 
-      <!--  nonvalidate means stop the default clent side vaidation 
-        and use bootstrap client side validation using needs validation class of botstrap -->
-
-
-      <!-- Title -->
       <div class="mb-3">
-        <input
-          type="text"
-          name="listing[title]"
-          value="<%= listing.title %>"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid title.
-        </div>
-        <!-- this is used for client side validation  -->
+        <label class="form-label" for="title">Title</label>
+        <input type="text" id="title" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
+        <div class="invalid-feedback">Please provide a valid title.</div>
       </div>
 
-      <!-- Description -->
       <div class="mb-3">
-        <textarea
-          name="listing[description]"
-          class="custom-input form-control"
-          required><%= listing.description %></textarea>
-
-        <div class="invalid-feedback">
-          Please provide a valid description.
-        </div>
-                <!-- this is used for client side validation  -->
-
+        <label class="form-label" for="description">Description</label>
+        <textarea id="description" name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+        <div class="invalid-feedback">Please provide a valid description.</div>
       </div>
 
-      <!-- Price -->
       <div class="mb-3">
-        <input
-          type="number"
-          name="listing[price]"
-          value="<%= listing.price %>"
-          class="custom-input form-control"
-          min="1"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid price.
-        </div>
-                <!-- this is used for client side validation  -->
-
+        <label class="form-label" for="price">Price per night (₹)</label>
+        <input type="number" id="price" name="listing[price]" value="<%= listing.price %>" class="form-control" min="1" required>
+        <div class="invalid-feedback">Please provide a valid price.</div>
       </div>
 
-      <!-- City -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[city]"
-          value="<%= listing.city %>"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid city.
+      <div class="row g-3">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <label class="form-label" for="city">City</label>
+          <input type="text" id="city" name="listing[city]" value="<%= listing.city %>" class="form-control" required>
+          <div class="invalid-feedback">Please provide a valid city.</div>
         </div>
-        <!-- this is used for client side validation  -->
+        <div class="col-md-6">
+          <label class="form-label" for="country">Country</label>
+          <input type="text" id="country" name="listing[country]" value="<%= listing.country %>" class="form-control" required>
+          <div class="invalid-feedback">Please provide a valid country.</div>
+        </div>
       </div>
 
-      <!-- Location -->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="listing[location]"
-          value="<%= listing.location %>"
-          class="custom-input form-control">
-
-        <div class="invalid-feedback">
-          Please provide a valid location.
-        </div>
-                <!-- this is used for client side validation  -->
-
+      <div class="mb-3 mt-3">
+        <label class="form-label" for="location">Location</label>
+        <input type="text" id="location" name="listing[location]" value="<%= listing.location %>" class="form-control" required>
+        <div class="form-text">Saving updates the map pin for this listing.</div>
+        <div class="invalid-feedback">Please provide a location.</div>
       </div>
 
-      <!-- Country -->
       <div class="mb-3">
-        <input
-          type="text"
-          name="listing[country]"
-          value="<%= listing.country %>"
-          class="custom-input form-control"
-          required>
-
-        <div class="invalid-feedback">
-          Please provide a valid country.
-        </div>
-                <!-- this is used for client side validation  -->
-
+        <label class="form-label">Current image</label>
+        <img src="<%= originalUrl %>" alt="Current listing" class="edit-preview-img">
       </div>
 
-        <div class="mb-3">
-          Original Listing Image <br>
-          <img height="300"  width="450"  src="<%=originalUrl %>">
-        </div>
-
-        
-
-
-      <!-- Image -->
-      <div class="mb-3">
-        <label for="image" class="form-label">New Image Link </label>
-        <input
-          type="file"
-          name="listing[image]"
-          class="custom-input form-control">
-
-        <div class="invalid-feedback">
-          Please provide a valid image URL.
-        </div>
-          <!-- this is used for client side validation  -->
-
+      <div class="mb-4">
+        <label class="form-label" for="image">Upload new image</label>
+        <input type="file" id="image" name="listing[image]" class="form-control" accept="image/*">
       </div>
-         
 
-      
-
-      <!-- Submit -->
-      <button type="submit" class="update-btn">
-        Update Listing
-      </button>
+      <button type="submit" class="update-btn">Update listing</button>
     </form>
   </div>
 </div>
-
-

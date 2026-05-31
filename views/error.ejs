@@ -1,13 +1,8 @@
 <% layout("layouts/boilerplate") %>
 
-<!-- Importing boilerplate html for all pages -->
-
-
-<!-- using the bootstrap error handling style css   -->
-<div class="row mt-5">
-<div class="alert alert-danger" role="alert">
-<p class="alert-heading"><%=err.message %></p>
+<div class="error-page">
+  <i class="fa-solid fa-triangle-exclamation d-block"></i>
+  <h2>Something went wrong</h2>
+  <p><%= err.message %></p>
+  <a href="/" class="btn btn-brand">Back to explore</a>
 </div>
-</div>
-
-

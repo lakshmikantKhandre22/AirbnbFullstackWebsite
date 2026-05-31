@@ -16,7 +16,20 @@ const listingSchema = new mongoose.Schema({
     
     price: Number ,
     location: String,
+    city: String,
     country: String,
+
+    // Map coordinates [longitude, latitude] for Leaflet / OpenStreetMap
+    geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            default: "Point",
+        },
+        coordinates: {
+            type: [Number],
+        },
+    },
 
 
     //one to may relation in mongoDB 

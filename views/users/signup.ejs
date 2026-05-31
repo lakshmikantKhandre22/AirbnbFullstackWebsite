@@ -1,86 +1,52 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="row mt-4">
-  <div class="col-8 offset-2">
+<div class="auth-page">
+  <div class="auth-page-visual d-none d-lg-flex">
+    <div class="auth-visual-content">
+      <i class="fa-brands fa-airbnb auth-visual-logo"></i>
+      <h2>Join WanderLust</h2>
+      <p>List your space, discover unique stays, and connect with travelers across India and beyond.</p>
+    </div>
+  </div>
+  <div class="auth-page-form">
+    <div class="auth-card">
+      <h1 class="auth-card-title">Sign up</h1>
+      <p class="auth-card-subtitle">Create your free account in seconds</p>
 
-    <h3 class="mb-4">Create Account</h3>
-
-    <form action="/signup" method="POST" novalidate class="needs-validation">
-
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter username"
-          class="form-control"
-          required
-        >
-
-        <div class="valid-feedback">
-          Username looks good.
+      <form action="/signup" method="POST" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="username" name="username" placeholder="Choose a username" class="form-control" required>
+          </div>
+          <div class="invalid-feedback">Please enter a username.</div>
         </div>
 
-        <div class="invalid-feedback">
-          Please enter a username.
-        </div>
-      </div>
-
-      <!-- Email -->
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter email"
-          class="form-control"
-          required
-        >
-
-        <div class="valid-feedback">
-          Email looks good.
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="you@example.com" class="form-control" required>
+          </div>
+          <div class="invalid-feedback">Please enter a valid email.</div>
         </div>
 
-        <div class="invalid-feedback">
-          Please enter a valid email.
-        </div>
-      </div>
-
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter password"
-          class="form-control"
-          required
-          minlength="6"
-        >
-
-        <div class="valid-feedback">
-          Password looks good.
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" class="form-control" required minlength="6">
+          </div>
+          <div class="invalid-feedback">Password must be at least 6 characters.</div>
         </div>
 
-        <div class="invalid-feedback">
-          Password must be at least 6 characters.
-        </div>
-      </div>
+        <button type="submit" class="btn-submit">Create account</button>
+      </form>
 
-      <!-- Signup Button -->
-      <button class="btn btn-dark">
-        Sign Up
-      </button>
-
-    </form>
+      <p class="auth-footer-link">
+        Already have an account? <a href="/login">Log in</a>
+      </p>
+    </div>
   </div>
 </div>
-
- 
